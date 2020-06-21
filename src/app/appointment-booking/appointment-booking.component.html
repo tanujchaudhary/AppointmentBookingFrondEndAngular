@@ -1,0 +1,73 @@
+<div class="container" style="padding-top:60px;">
+
+    <form name="form" (ngSubmit)="saveAppointment()">
+        <h1 style="text-align:center">Appointment Booking</h1>
+
+        <div class="input-group mb-3">
+
+            <fieldset class="form-group">
+                <label>Select the Person</label>
+                <select style="width: 100px;" class="form-control" [(ngModel)]="todo.username" name="username">
+                    <option value="0">Select</option>
+                    <option *ngFor="let user of usersList">{{user}}</option>
+                </select>
+            </fieldset>
+        </div>
+
+        <div class="input-group mb-3">
+
+            <fieldset class="form-group">
+                <label>Target Date</label>
+                <input type="date" #targetDate="ngModel" [ngModel]="todo.targetDate | date:'yyyy-MM-dd'"
+                    (ngModelChange)="todo.targetDate = $event" class="form-control" name="targetDate"
+                    required="required">
+            </fieldset>
+
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <fieldset class="form-group">
+                <label>Start Time</label>
+                <select style="width: 100px;" name="startTime" class="form-control" [ngModel]="todo.startTime"
+                    (ngModelChange)="calculateEndtime($event)">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                </select>
+            </fieldset>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <fieldset class="form-group">
+                <label>End Time</label>
+                <input style="width: 100px;" name="endTime" [(ngModel)]="todo.endTime" class="form-control"
+                    disabled='true'>
+            </fieldset>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+
+        </div>
+
+        <button type="submit" class="btn btn-success">submit</button>
+
+
+    </form>
+
+
+</div>
+<div class="alert alert-success" *ngIf="message">{{message}}</div>
